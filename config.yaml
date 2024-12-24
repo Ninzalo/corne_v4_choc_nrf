@@ -5,7 +5,7 @@ units:
   # main variables
   keycap_x: 16.5                  # keycap width
   keycap_y: 16.5                  # keycap height
-  spacing: 1                      # space between keycaps
+  spacing: 1                      # space between keycaps (> 0)
   plate_spacing: 2                # additional plate spacing (2 is recomended)
 
   # default values
@@ -13,6 +13,7 @@ units:
   keys_y: 3                       # amount of columns
   key_spread: keycap_x + spacing
   key_padding: keycap_y + spacing
+  is_thumbs_inner_1_5: 0
   stagger_step: 2.381
   thumb_keys_splay: 11.94
   # thumb_keys_splay: 0
@@ -61,7 +62,7 @@ units:
   thumbs_plate_inner_x: key_plate_x
   thumbs_plate_inner_y: 1.5keycap_y + plate_spacing
   thumbs_plate_inner_shift_x: 0
-  thumbs_plate_inner_shift_y: keycap_y/4
+  thumbs_plate_inner_shift_y: keycap_y/4 - is_thumbs_inner_1_5 * keycap_y/4
 
   # inner thumbs plate shifted
   thumbs_plate_inner_shifted_x: thumbs_plate_inner_x
@@ -126,6 +127,7 @@ points:
           key:
             splay: -thumb_keys_splay
             origin: [-(keycap_x + spacing)/2, -(keycap_y + spacing)/2]
+            shift: [0, is_thumbs_inner_1_5 * keycap_y/4]
       rows:
         cluster:
 
@@ -194,7 +196,7 @@ outlines:
         ref: thumbs_inner_cluster
         shift: [thumbs_plate_inner_shift_x, thumbs_plate_inner_shift_y]
       size: [thumbs_plate_inner_x, thumbs_plate_inner_y]
-      # inner thumbs plate ыршаеув
+    # inner thumbs plate shifted
     - what: rectangle
       where:
         ref: thumbs_inner_cluster
