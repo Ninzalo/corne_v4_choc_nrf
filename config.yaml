@@ -1,0 +1,208 @@
+meta:
+  engine: 4.1.0
+
+units:
+  # main variables
+  keycap_x: 16.5                  # keycap width
+  keycap_y: 16.5                  # keycap height
+  spacing: 1                      # space between keycaps
+  plate_spacing: 2                # additional plate spacing (2 is recomended)
+
+  # default values
+  keys_x: 6                       # keys in column
+  keys_y: 3                       # amount of columns
+  key_spread: keycap_x + spacing
+  key_padding: keycap_y + spacing
+  stagger_step: 2.381
+  thumb_keys_splay: 11.94
+  # thumb_keys_splay: 0
+
+  # MCU
+  mcu_x: 17.78
+  mcu_y: 33
+  mcu_shift_x: keycap_x/2 + 2spacing + mcu_x/2
+  mcu_shift_y: +keycap_y/2 - mcu_y/2 - stagger_step
+
+  # single key plate
+  key_plate_x: keycap_x + plate_spacing
+  key_plate_y: keycap_x + plate_spacing
+
+  # tile key plate
+  tile_plate_x: (keys_x * keycap_x + (keys_x - 1) * spacing)/keys_x
+  tile_plate_y: (keys_y * keycap_y + (keys_y - 1) * spacing)/keys_y
+  tile_shift_x: (-keycap_x/2 + keys_x * keycap_x/2 + (keys_x - 1) * spacing/2)/keys_x
+  tile_shift_y: (-keycap_y/2 + keys_y * keycap_y/2 + (keys_y - 1) * spacing/2)/keys_y
+
+  # outer bottom plate
+  outer_bottom_size_x: keys_x * tile_plate_x + plate_spacing
+  outer_bottom_size_y: keys_y * tile_plate_y + plate_spacing
+  outer_bottom_shift_x: keys_x * tile_shift_x
+  outer_bottom_shift_y: keys_y * tile_shift_y
+
+  # under mcu plate
+  mcu_plate_size_x: mcu_x + plate_spacing
+  mcu_plate_size_y: outer_bottom_size_y
+  mcu_plate_shift_x: mcu_shift_x
+  mcu_plate_shift_y: -outer_bottom_shift_y  - stagger_step
+
+  # left mcu plate
+  left_mcu_plate_x: 2spacing
+  left_mcu_plate_y: mcu_plate_size_y
+  left_mcu_plate_shift_x: mcu_plate_shift_x - mcu_plate_size_x/2 - spacing
+  left_mcu_plate_shift_y: mcu_plate_shift_y
+
+  # inner thumbs plate
+  thumbs_plate_inner_x: key_plate_x
+  thumbs_plate_inner_y: 1.5keycap_y + plate_spacing
+  thumbs_plate_inner_shift_x: 0
+  thumbs_plate_inner_shift_y: keycap_y / 4
+  
+  # outer middle thumbs plate
+  thumbs_plate_outer_middle_side_a: keycap_x + spacing/2 + plate_spacing/2
+  thumbs_plate_outer_middle_side_b: spacing/2
+  thumbs_plate_outer_middle_side_c: plate_spacing/2
+  thumbs_plate_outer_middle_side_d: thumbs_plate_outer_middle_side_c - thumbs_plate_outer_middle_side_b
+  thumbs_plate_outer_middle_side_e: sqrt(pow(thumbs_plate_outer_middle_side_a, 2) + pow(thumbs_plate_outer_middle_side_d, 2))
+  thumbs_plate_outer_middle_a_e_angle_rad: atan(thumbs_plate_outer_middle_side_d/thumbs_plate_outer_middle_side_a)
+  thumbs_plate_outer_middle_a_e_angle_deg: thumbs_plate_outer_middle_a_e_angle_rad * 180 / pi
+  thumbs_plate_outer_middle_e_e_angle_deg: 180 - thumb_keys_splay - 2 * thumbs_plate_outer_middle_a_e_angle_deg
+  thumbs_plate_outer_middle_e_e_angle_rad: thumbs_plate_outer_middle_e_e_angle_deg * pi / 180
+
+  thumbs_plate_outer_middle_rotate: -thumb_keys_splay/2
+
+  thumbs_plate_outer_middle_x: thumbs_plate_outer_middle_side_e * sqrt(2 * (1 - cos(thumbs_plate_outer_middle_e_e_angle_rad)))
+  thumbs_plate_outer_middle_y: keycap_y + plate_spacing
+
+  thumbs_plate_outer_middle_shift_x: -keycap_x/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * cos(-thumb_keys_splay/2 * pi / 180) - thumbs_plate_outer_middle_y/2 * sin(-thumb_keys_splay/2 * pi / 180)
+  thumbs_plate_outer_middle_shift_y: -keycap_y/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * sin(-thumb_keys_splay/2 * pi / 180) + thumbs_plate_outer_middle_y/2 * cos(-thumb_keys_splay/2 * pi / 180)
+
+points:
+  zones:
+    matrix:
+      key:
+        padding: key_padding
+        spread: key_spread
+      columns:
+        outer:
+        pinky:
+        ring:
+          key.stagger: 2stagger_step
+        middle:
+          key.stagger: stagger_step
+        index:
+          key.stagger: -stagger_step
+        inner:
+          key.stagger: -stagger_step
+      rows:
+        bottom:
+        home:
+        top:
+    thumbs:
+      key:
+        padding: key_padding
+        spread: key_spread
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-1.5keycap_x - spacing, -keycap_y - spacing]
+      columns:
+        outer:
+        middle:
+          key:
+            splay: -thumb_keys_splay
+            origin: [-(keycap_x + spacing)/2, -(keycap_y + spacing)/2]
+        inner:
+          key:
+            splay: -thumb_keys_splay
+            origin: [-(keycap_x + spacing)/2, -(keycap_y + spacing)/2]
+      rows:
+        cluster:
+
+outlines:
+  keys:
+    - what: rectangle
+      where: true
+      size: [keycap_x, keycap_y]
+
+  switches:
+    - what: rectangle
+      where: true
+      size: [15, 15]
+
+  keys_and_mcu:
+    - what: rectangle
+      where: true
+      size: [keycap_x, keycap_y]
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+        shift: [mcu_shift_x, mcu_shift_y]
+      size: [mcu_x, mcu_y]
+
+  plate:
+    # keys
+    - what: rectangle
+      where: true
+      size: [key_plate_x, key_plate_y]
+    # mcu
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+        shift: [mcu_shift_x, mcu_shift_y]
+      size: [mcu_x, mcu_y]
+    # outer bottom rectangle
+    - what: rectangle
+      where:
+        ref: matrix_outer_bottom
+        shift: [outer_bottom_shift_x, outer_bottom_shift_y]
+      size: [outer_bottom_size_x, outer_bottom_size_y]
+    # inner thumbs rectangle
+    - what: rectangle
+      where:
+        ref: thumbs_inner_cluster
+        shift: [thumbs_plate_inner_shift_x, thumbs_plate_inner_shift_y]
+      size: [thumbs_plate_inner_x, thumbs_plate_inner_y]
+    # outer middle thumbs rectangle
+    - what: rectangle
+      where:
+        ref: thumbs_outer_cluster
+        shift: [thumbs_plate_outer_middle_shift_x, thumbs_plate_outer_middle_shift_y]
+        rotate: thumbs_plate_outer_middle_rotate
+      size: [thumbs_plate_outer_middle_x, thumbs_plate_outer_middle_y]
+
+    # under mcu plate
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+        shift: [mcu_plate_shift_x, mcu_plate_shift_y]
+      size: [mcu_plate_size_x, mcu_plate_size_y]
+    # left mcu plate
+    - what: rectangle
+      where: 
+        ref: matrix_inner_top
+        shift: [left_mcu_plate_shift_x, left_mcu_plate_shift_y]
+      size: [left_mcu_plate_x, left_mcu_plate_y]
+
+
+pcbs:
+  main:
+    template: kicad8
+    outlines:
+      main:
+        outline: plate
+    footprints:
+      keyswitches:
+        where: true
+        what: ceoloide/switch_choc_v1_v2
+        params:
+          hotswap: true
+          reversible: true
+          from: "{{col_net}}"
+          to: "{{colrow}}"
+      mcu:
+        what: ceoloide/mcu_supermini_nrf52840
+        params:
+          reversible: true
+        where:
+          ref: matrix_inner_top
+          shift: [mcu_shift_x, mcu_shift_y]
+
