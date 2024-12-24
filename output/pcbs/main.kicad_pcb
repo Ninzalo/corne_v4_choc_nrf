@@ -6237,13 +6237,13 @@
 (gr_line (start 96.75 -44.25) (end 96.75 -46.631) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
 (gr_line (start 79.25 -46.631) (end 96.75 -46.631) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
 (gr_line (start 52.5 9.25) (end 52.5 24.369) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
-(gr_line (start 87.63758360912483 28.04350861456687) (end 103.8780884 35.233528500000006) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
+(gr_line (start 87.63758360431054 28.043508614063413) (end 103.8780884 35.233528500000006) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
 (gr_line (start 103.8780884 35.233528500000006) (end 114.70708830000001 10.773453600000003) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
-(gr_line (start 114.70708830000001 10.773453600000003) (end 111.26597741772724 9.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
-(gr_line (start 52.5 24.369) (end 87.63758360912483 28.043508614566868) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
-(gr_line (start 111.26597741772724 9.25) (end 116.53 9.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
+(gr_line (start 111.26597743479762 9.25) (end 116.53 9.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
 (gr_line (start 116.53 9.25) (end 116.53 -44.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
-(gr_line (start 116.53 -44.25) (end 96.75 -44.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
+(gr_line (start 96.75 -44.25) (end 116.53 -44.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
+(gr_line (start 111.26597743479762 9.25) (end 114.70708830000001 10.773453600000003) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
+(gr_line (start 52.5 24.369) (end 87.63758360431054 28.043508614063413) (layer Edge.Cuts) (stroke (width 0.15) (type default)))
 
 )
 

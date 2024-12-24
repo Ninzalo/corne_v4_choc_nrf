@@ -6,7 +6,7 @@ units:
   keycap_x: 16.5                  # keycap width
   keycap_y: 16.5                  # keycap height
   spacing: 1                      # space between keycaps (> 0)
-  plate_spacing: 2                # additional plate spacing (2 is recomended)
+  plate_spacing: 2                # additional spacing around the plate (2 is recomended)
 
   # default values
   keys_x: 6                       # keys in column
@@ -46,11 +46,11 @@ units:
   outer_bottom_shift_x: keys_x * tile_shift_x
   outer_bottom_shift_y: keys_y * tile_shift_y
 
-  # under mcu plate
+  # mcu plate
   mcu_plate_size_x: mcu_x + plate_spacing
   mcu_plate_size_y: column_plate_y
   mcu_plate_shift_x: mcu_shift_x
-  mcu_plate_shift_y: -outer_bottom_shift_y  - stagger_step
+  mcu_plate_shift_y: -outer_bottom_shift_y - stagger_step
 
   # left mcu plate
   left_mcu_plate_x: 2spacing
@@ -69,7 +69,7 @@ units:
   thumbs_plate_inner_shifted_y: thumbs_plate_inner_y
   thumbs_plate_inner_shifted_shift_x: thumbs_plate_inner_shift_x - thumbs_plate_inner_shifted_x/2
   thumbs_plate_inner_shifted_shift_y: thumbs_plate_inner_shift_y
-  
+
   # outer middle thumbs plate
   thumbs_plate_outer_middle_side_a: keycap_x + spacing/2 + plate_spacing/2
   thumbs_plate_outer_middle_side_b: spacing/2
@@ -142,28 +142,40 @@ outlines:
       where: true
       size: [15, 15]
 
+  mcu:
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+        shift: [mcu_shift_x, mcu_shift_y]
+      size: [mcu_x, mcu_y]
+
   keys_and_mcu:
-    - what: rectangle
-      where: true
-      size: [keycap_x, keycap_y]
+    - what: outline
+      name: keys
+    - what: outline
+      name: mcu
+
+  mcu_plate:
+    # mcu plate
     - what: rectangle
       where:
         ref: matrix_inner_top
-        shift: [mcu_shift_x, mcu_shift_y]
-      size: [mcu_x, mcu_y]
-
-  plate:
-    # keys
-    - what: rectangle
-      where: true
-      size: [key_plate_x, key_plate_y]
-    # mcu
+        shift: [mcu_plate_shift_x, mcu_plate_shift_y]
+      size: [mcu_plate_size_x, mcu_plate_size_y]
+    # left mcu plate
     - what: rectangle
       where:
         ref: matrix_inner_top
-        shift: [mcu_shift_x, mcu_shift_y]
-      size: [mcu_x, mcu_y]
+        shift: [left_mcu_plate_shift_x, left_mcu_plate_shift_y]
+      size: [left_mcu_plate_x, left_mcu_plate_y]
 
+  matrix_plate:
+    # outer bottom plate
+    - what: rectangle
+      where:
+        ref: matrix_outer_bottom
+        shift: [outer_bottom_shift_x, outer_bottom_shift_y]
+      size: [outer_bottom_size_x, outer_bottom_size_y]
     # right ring plate
     - what: rectangle
       where:
@@ -183,13 +195,7 @@ outlines:
         shift: [column_plate_shift_x - (key_spread)/2, column_plate_shift_y]
       size: [column_plate_x, column_plate_y]
 
-    # outer bottom plate
-    - what: rectangle
-      where:
-        ref: matrix_outer_bottom
-        shift: [outer_bottom_shift_x, outer_bottom_shift_y]
-      size: [outer_bottom_size_x, outer_bottom_size_y]
-
+  thumbs_plate:
     # inner thumbs plate
     - what: rectangle
       where:
@@ -202,7 +208,6 @@ outlines:
         ref: thumbs_inner_cluster
         shift: [thumbs_plate_inner_shifted_shift_x, thumbs_plate_inner_shifted_shift_y]
       size: [thumbs_plate_inner_shifted_x, thumbs_plate_inner_shifted_y]
-
     # outer middle thumbs plate
     - what: rectangle
       where:
@@ -211,19 +216,23 @@ outlines:
         rotate: thumbs_plate_outer_middle_rotate
       size: [thumbs_plate_outer_middle_x, thumbs_plate_outer_middle_y]
 
-    # under mcu plate
+  plate:
+    # keys plate
     - what: rectangle
-      where:
-        ref: matrix_inner_top
-        shift: [mcu_plate_shift_x, mcu_plate_shift_y]
-      size: [mcu_plate_size_x, mcu_plate_size_y]
-    # left mcu plate
-    - what: rectangle
-      where: 
-        ref: matrix_inner_top
-        shift: [left_mcu_plate_shift_x, left_mcu_plate_shift_y]
-      size: [left_mcu_plate_x, left_mcu_plate_y]
-
+      where: true
+      size: [key_plate_x, key_plate_y]
+    # mcu
+    - what: outline
+      name: mcu
+    # mcu plate
+    - what: outline
+      name: mcu_plate
+    # matrix plate
+    - what: outline
+      name: matrix_plate
+    # thumbs plate
+    - what: outline
+      name: thumbs_plate
 
 pcbs:
   main:
@@ -247,4 +256,3 @@ pcbs:
         where:
           ref: matrix_inner_top
           shift: [mcu_shift_x, mcu_shift_y]
-
