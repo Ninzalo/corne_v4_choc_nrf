@@ -176,17 +176,41 @@ outlines:
         ref: matrix_outer_bottom
         shift: [outer_bottom_shift_x, outer_bottom_shift_y]
       size: [outer_bottom_size_x, outer_bottom_size_y]
+    # ring plate
+    - what: rectangle
+      where:
+        ref: matrix_ring_home
+        shift: [column_plate_shift_x, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
     # right ring plate
     - what: rectangle
       where:
         ref: matrix_ring_home
         shift: [column_plate_shift_x + (key_spread)/2, column_plate_shift_y]
       size: [column_plate_x, column_plate_y]
+    # middle plate
+    - what: rectangle
+      where:
+        ref: matrix_middle_home
+        shift: [column_plate_shift_x, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
+    # index plate
+    - what: rectangle
+      where:
+        ref: matrix_index_home
+        shift: [column_plate_shift_x, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
     # left index plate
     - what: rectangle
       where:
         ref: matrix_index_home
         shift: [column_plate_shift_x - (key_spread)/2, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
+    # inner plate
+    - what: rectangle
+      where:
+        ref: matrix_inner_home
+        shift: [column_plate_shift_x, column_plate_shift_y]
       size: [column_plate_x, column_plate_y]
     # left inner plate
     - what: rectangle
