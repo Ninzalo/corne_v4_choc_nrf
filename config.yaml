@@ -80,14 +80,16 @@ units:
   thumbs_plate_outer_middle_a_e_angle_deg: thumbs_plate_outer_middle_a_e_angle_rad * 180 / pi
   thumbs_plate_outer_middle_e_e_angle_deg: 180 - thumb_keys_splay - 2 * thumbs_plate_outer_middle_a_e_angle_deg
   thumbs_plate_outer_middle_e_e_angle_rad: thumbs_plate_outer_middle_e_e_angle_deg * pi / 180
+  half_thumb_keys_splay_deg: thumb_keys_splay/2
+  half_thumb_keys_splay_rad: half_thumb_keys_splay_deg * pi / 180
 
   thumbs_plate_outer_middle_rotate: -thumb_keys_splay/2
 
   thumbs_plate_outer_middle_x: thumbs_plate_outer_middle_side_e * sqrt(2 * (1 - cos(thumbs_plate_outer_middle_e_e_angle_rad)))
   thumbs_plate_outer_middle_y: 1.5keycap_y + plate_spacing
 
-  thumbs_plate_outer_middle_shift_x: -keycap_x/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * cos(-thumb_keys_splay/2 * pi / 180) - thumbs_plate_outer_middle_y/2 * sin(-thumb_keys_splay/2 * pi / 180)
-  thumbs_plate_outer_middle_shift_y: -keycap_y/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * sin(-thumb_keys_splay/2 * pi / 180) + thumbs_plate_outer_middle_y/2 * cos(-thumb_keys_splay/2 * pi / 180)
+  thumbs_plate_outer_middle_shift_x: -keycap_x/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * cos(-half_thumb_keys_splay_rad) - thumbs_plate_outer_middle_y/2 * sin(-half_thumb_keys_splay_rad)
+  thumbs_plate_outer_middle_shift_y: -keycap_y/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * sin(-half_thumb_keys_splay_rad) + thumbs_plate_outer_middle_y/2 * cos(-half_thumb_keys_splay_rad)
 
 points:
   zones:
