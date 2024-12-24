@@ -33,15 +33,21 @@ units:
   tile_shift_x: (-keycap_x/2 + keys_x * keycap_x/2 + (keys_x - 1) * spacing/2)/keys_x
   tile_shift_y: (-keycap_y/2 + keys_y * keycap_y/2 + (keys_y - 1) * spacing/2)/keys_y
 
+  # column plate
+  column_plate_x: key_plate_x
+  column_plate_y: keys_y * tile_plate_y + plate_spacing
+  column_plate_shift_x: 0
+  column_plate_shift_y: 0
+
   # outer bottom plate
   outer_bottom_size_x: keys_x * tile_plate_x + plate_spacing
-  outer_bottom_size_y: keys_y * tile_plate_y + plate_spacing
+  outer_bottom_size_y: column_plate_y
   outer_bottom_shift_x: keys_x * tile_shift_x
   outer_bottom_shift_y: keys_y * tile_shift_y
 
   # under mcu plate
   mcu_plate_size_x: mcu_x + plate_spacing
-  mcu_plate_size_y: outer_bottom_size_y
+  mcu_plate_size_y: column_plate_y
   mcu_plate_shift_x: mcu_shift_x
   mcu_plate_shift_y: -outer_bottom_shift_y  - stagger_step
 
@@ -55,7 +61,13 @@ units:
   thumbs_plate_inner_x: key_plate_x
   thumbs_plate_inner_y: 1.5keycap_y + plate_spacing
   thumbs_plate_inner_shift_x: 0
-  thumbs_plate_inner_shift_y: keycap_y / 4
+  thumbs_plate_inner_shift_y: keycap_y/4
+
+  # inner thumbs plate shifted
+  thumbs_plate_inner_shifted_x: thumbs_plate_inner_x
+  thumbs_plate_inner_shifted_y: thumbs_plate_inner_y
+  thumbs_plate_inner_shifted_shift_x: thumbs_plate_inner_shift_x - thumbs_plate_inner_shifted_x/2
+  thumbs_plate_inner_shifted_shift_y: thumbs_plate_inner_shift_y
   
   # outer middle thumbs plate
   thumbs_plate_outer_middle_side_a: keycap_x + spacing/2 + plate_spacing/2
@@ -71,7 +83,7 @@ units:
   thumbs_plate_outer_middle_rotate: -thumb_keys_splay/2
 
   thumbs_plate_outer_middle_x: thumbs_plate_outer_middle_side_e * sqrt(2 * (1 - cos(thumbs_plate_outer_middle_e_e_angle_rad)))
-  thumbs_plate_outer_middle_y: keycap_y + plate_spacing
+  thumbs_plate_outer_middle_y: 1.5keycap_y + plate_spacing
 
   thumbs_plate_outer_middle_shift_x: -keycap_x/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * cos(-thumb_keys_splay/2 * pi / 180) - thumbs_plate_outer_middle_y/2 * sin(-thumb_keys_splay/2 * pi / 180)
   thumbs_plate_outer_middle_shift_y: -keycap_y/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * sin(-thumb_keys_splay/2 * pi / 180) + thumbs_plate_outer_middle_y/2 * cos(-thumb_keys_splay/2 * pi / 180)
@@ -149,19 +161,47 @@ outlines:
         ref: matrix_inner_top
         shift: [mcu_shift_x, mcu_shift_y]
       size: [mcu_x, mcu_y]
-    # outer bottom rectangle
+
+    # right ring plate
+    - what: rectangle
+      where:
+        ref: matrix_ring_home
+        shift: [column_plate_shift_x + (key_spread)/2, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
+    # left index plate
+    - what: rectangle
+      where:
+        ref: matrix_index_home
+        shift: [column_plate_shift_x - (key_spread)/2, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
+    # left inner plate
+    - what: rectangle
+      where:
+        ref: matrix_inner_home
+        shift: [column_plate_shift_x - (key_spread)/2, column_plate_shift_y]
+      size: [column_plate_x, column_plate_y]
+
+    # outer bottom plate
     - what: rectangle
       where:
         ref: matrix_outer_bottom
         shift: [outer_bottom_shift_x, outer_bottom_shift_y]
       size: [outer_bottom_size_x, outer_bottom_size_y]
-    # inner thumbs rectangle
+
+    # inner thumbs plate
     - what: rectangle
       where:
         ref: thumbs_inner_cluster
         shift: [thumbs_plate_inner_shift_x, thumbs_plate_inner_shift_y]
       size: [thumbs_plate_inner_x, thumbs_plate_inner_y]
-    # outer middle thumbs rectangle
+      # inner thumbs plate ыршаеув
+    - what: rectangle
+      where:
+        ref: thumbs_inner_cluster
+        shift: [thumbs_plate_inner_shifted_shift_x, thumbs_plate_inner_shifted_shift_y]
+      size: [thumbs_plate_inner_shifted_x, thumbs_plate_inner_shifted_y]
+
+    # outer middle thumbs plate
     - what: rectangle
       where:
         ref: thumbs_outer_cluster
