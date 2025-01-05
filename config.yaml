@@ -3,17 +3,24 @@ meta:
 
 units:
   # main variables
-  keycap_x: 16.5                  # keycap width
-  keycap_y: 16.5                  # keycap height
-  spacing: 1                      # space between keycaps (> 0)
-  plate_spacing: 2                # additional spacing around the plate (2 is recomended)
+  ## keycap width
+  keycap_x: 16.5
+  ## keycap height
+  keycap_y: 16.5
+  ## space between keycaps (> 0)
+  spacing: 1
+  ## additional spacing around the plate (2 is recomended)
+  plate_spacing: 2
+  ## is inner thumbs keycap 1.5 * keycap
+  is_thumbs_inner_1_5: 0
 
   # default values
-  keys_x: 6                       # keys in column
-  keys_y: 3                       # amount of columns
+  ## keys in column
+  keys_x: 6
+  ## amount of columns
+  keys_y: 3
   key_spread: keycap_x + spacing
   key_padding: keycap_y + spacing
-  is_thumbs_inner_1_5: 0
   stagger_step: 2.381
   thumb_keys_splay: 11.94
   # thumb_keys_splay: 0
@@ -46,50 +53,97 @@ units:
   outer_bottom_shift_x: keys_x * tile_shift_x
   outer_bottom_shift_y: keys_y * tile_shift_y
 
-  # mcu plate
-  mcu_plate_size_x: mcu_x + plate_spacing
-  mcu_plate_size_y: column_plate_y
-  mcu_plate_shift_x: mcu_shift_x
-  mcu_plate_shift_y: -outer_bottom_shift_y - stagger_step
+  # ref positions
+  ref_position_circle_radius: 1
 
-  # left mcu plate
-  left_mcu_plate_x: 2spacing
-  left_mcu_plate_y: mcu_plate_size_y
-  left_mcu_plate_shift_x: mcu_plate_shift_x - mcu_plate_size_x/2 - spacing
-  left_mcu_plate_shift_y: mcu_plate_shift_y
+  _1_2_x: 4(keycap_x + spacing)
+  _1_2_y: stagger_step
 
-  # inner thumbs plate
-  thumbs_plate_inner_x: key_plate_x
-  thumbs_plate_inner_y: 1.5keycap_y + plate_spacing
-  thumbs_plate_inner_shift_x: 0
-  thumbs_plate_inner_shift_y: keycap_y/4 - is_thumbs_inner_1_5 * keycap_y/4
+  _2_3_x: -1.5(keycap_x+spacing)
+  _2_3_y: -(keycap_y + spacing)
 
-  # inner thumbs plate shifted
-  thumbs_plate_inner_shifted_x: thumbs_plate_inner_x
-  thumbs_plate_inner_shifted_y: thumbs_plate_inner_y
-  thumbs_plate_inner_shifted_shift_x: thumbs_plate_inner_shift_x - thumbs_plate_inner_shifted_x/2
-  thumbs_plate_inner_shifted_shift_y: thumbs_plate_inner_shift_y
+  _3_4_x: (keycap_x + spacing)/2 + cos((90 - thumb_keys_splay) * pi/180) * spacing/2 + cos(-thumb_keys_splay * pi/180) * spacing/2 + cos(-thumb_keys_splay * pi/180) * keycap_x/2 + cos((90 - thumb_keys_splay) * pi/180) * keycap_y/2
+  _3_4_y: -(keycap_y + spacing)/2 + sin((90 - thumb_keys_splay) * pi/180) * spacing/2 + sin(-thumb_keys_splay * pi/180) * spacing/2 + sin((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay * pi/180) * keycap_x/2
 
-  # outer middle thumbs plate
-  thumbs_plate_outer_middle_side_a: keycap_x + spacing/2 + plate_spacing/2
-  thumbs_plate_outer_middle_side_b: spacing/2
-  thumbs_plate_outer_middle_side_c: plate_spacing/2
-  thumbs_plate_outer_middle_side_d: thumbs_plate_outer_middle_side_c - thumbs_plate_outer_middle_side_b
-  thumbs_plate_outer_middle_side_e: sqrt(pow(thumbs_plate_outer_middle_side_a, 2) + pow(thumbs_plate_outer_middle_side_d, 2))
-  thumbs_plate_outer_middle_a_e_angle_rad: atan(thumbs_plate_outer_middle_side_d/thumbs_plate_outer_middle_side_a)
-  thumbs_plate_outer_middle_a_e_angle_deg: thumbs_plate_outer_middle_a_e_angle_rad * 180 / pi
-  thumbs_plate_outer_middle_e_e_angle_deg: 180 - thumb_keys_splay - 2 * thumbs_plate_outer_middle_a_e_angle_deg
-  thumbs_plate_outer_middle_e_e_angle_rad: thumbs_plate_outer_middle_e_e_angle_deg * pi / 180
-  half_thumb_keys_splay_deg: thumb_keys_splay/2
-  half_thumb_keys_splay_rad: half_thumb_keys_splay_deg * pi / 180
+  _4_5_x: -cos((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-thumb_keys_splay * pi/180) * keycap_x/2 + cos(-thumb_keys_splay * pi/180) * spacing/2 - cos((90 - thumb_keys_splay) * pi/180) * spacing/2 + cos((90 - 2thumb_keys_splay) * pi/180) * spacing/2 + cos(-2thumb_keys_splay * pi/180) * spacing/2 + cos(-2thumb_keys_splay * pi/180) * keycap_x/2 + cos((90 - 2thumb_keys_splay) * pi/180) * (keycap_y + is_thumbs_inner_1_5 * keycap_y/2)/2
+  _4_5_y: -sin((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay * pi/180) * keycap_x/2 + sin(-thumb_keys_splay * pi/180) * spacing/2 - sin((90 - thumb_keys_splay) * pi/180) * spacing/2 + sin((90 - 2thumb_keys_splay) * pi/180) * spacing/2 + sin(-2thumb_keys_splay * pi/180) * spacing/2 + sin((90 - 2thumb_keys_splay) * pi/180) *(keycap_y + is_thumbs_inner_1_5 * keycap_y/2)/2 + sin(-2thumb_keys_splay * pi/180) * keycap_x/2
 
-  thumbs_plate_outer_middle_rotate: -thumb_keys_splay/2
+  _2_6_x: 0
+  _2_6_y: 2(keycap_y + spacing)
 
-  thumbs_plate_outer_middle_x: thumbs_plate_outer_middle_side_e * sqrt(2 * (1 - cos(thumbs_plate_outer_middle_e_e_angle_rad)))
-  thumbs_plate_outer_middle_y: 1.5keycap_y + plate_spacing
+  _6_7_x: mcu_shift_x
+  _6_7_y: mcu_shift_y
 
-  thumbs_plate_outer_middle_shift_x: -keycap_x/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * cos(-half_thumb_keys_splay_rad) - thumbs_plate_outer_middle_y/2 * sin(-half_thumb_keys_splay_rad)
-  thumbs_plate_outer_middle_shift_y: -keycap_y/2 - plate_spacing/2 + thumbs_plate_outer_middle_x/2 * sin(-half_thumb_keys_splay_rad) + thumbs_plate_outer_middle_y/2 * cos(-half_thumb_keys_splay_rad)
+  _2_center_x: _1_2_x
+  _2_center_y: _1_2_y
+
+  _3_center_x: _2_center_x + _2_3_x
+  _3_center_y: _2_center_y + _2_3_y
+
+  _4_center_x: _3_center_x + _3_4_x
+  _4_center_y: _3_center_y + _3_4_y
+
+  _5_center_x: _4_center_x + _4_5_x
+  _5_center_y: _4_center_y + _4_5_y
+
+  _6_center_x: _2_center_x + _2_6_x
+  _6_center_y: _2_center_y + _2_6_y
+
+  _7_center_x: _6_center_x + _6_7_x
+  _7_center_y: _6_center_y + _6_7_y
+
+  _2_br_x: (keycap_x + plate_spacing)/2
+  _2_br_y: -(keycap_y + plate_spacing)/2
+
+  _1_2_br_x: _2_center_x + _2_br_x
+  _1_2_br_y: _2_center_y + _2_br_y
+
+  _3_bl_x: -(keycap_x + plate_spacing)/2
+  _3_bl_y: -(keycap_y + plate_spacing)/2
+
+  _1_3_bl_x: _3_center_x + _3_bl_x
+  _1_3_bl_y: _3_center_y + _3_bl_y
+
+  _4_br_x: cos(-thumb_keys_splay * pi/180) * keycap_x/2 - cos((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-thumb_keys_splay * pi/180) * plate_spacing/2 - cos((90 - thumb_keys_splay) * pi/180) * plate_spacing/2
+  _4_br_y: sin(-thumb_keys_splay * pi/180) * keycap_x/2 - sin((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay * pi/180) * plate_spacing/2 - sin((90 - thumb_keys_splay) * pi/180) * plate_spacing/2
+
+  _1_4_br_x: _4_center_x + _4_br_x
+  _1_4_br_y: _4_center_y + _4_br_y
+
+  _5_br_x: cos(-2thumb_keys_splay * pi/180) * keycap_x/2 - cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 - cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - is_thumbs_inner_1_5 * cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/4
+  _5_br_y: sin(-2thumb_keys_splay * pi/180) * keycap_x/2 - sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 - sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - is_thumbs_inner_1_5 * sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/4
+  _5_bl_x: -cos(-2thumb_keys_splay * pi/180) * keycap_x/2 - cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 - cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 - cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - is_thumbs_inner_1_5 * cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/4
+  _5_bl_y: -sin(-2thumb_keys_splay * pi/180) * keycap_x/2 - sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 - sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 - sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - is_thumbs_inner_1_5 * sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/4
+  _5_tr_x: cos(-2thumb_keys_splay * pi/180) * keycap_x/2 + cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 + cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 + is_thumbs_inner_1_5 * cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/4
+  _5_tr_y: sin(-2thumb_keys_splay * pi/180) * keycap_x/2 + sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 + sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 + is_thumbs_inner_1_5 * sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/4
+  ### add _5_tl
+
+  _1_5_br_x: _5_center_x + _5_br_x
+  _1_5_br_y: _5_center_y + _5_br_y
+  _1_5_bl_x: _5_center_x + _5_bl_x
+  _1_5_bl_y: _5_center_y + _5_bl_y
+  _1_5_tr_x: _5_center_x + _5_tr_x
+  _1_5_tr_y: _5_center_y + _5_tr_y
+
+  _7_br_x: (mcu_x + plate_spacing)/2
+  _7_br_y: -(mcu_y + plate_spacing)/2
+  _7_tr_x: _7_br_x
+  _7_tr_y: (mcu_y + plate_spacing)/2
+  _7_tl_x: -_7_br_x
+  _7_tl_y: _7_tr_y
+
+  _1_7_br_x: _7_center_x + _7_br_x
+  _1_7_br_y: _7_center_y + _7_br_y
+  _1_7_tr_x: _7_center_x + _7_tr_x
+  _1_7_tr_y: _7_center_y + _7_tr_y
+  _1_7_tl_x: _7_center_x + _7_tl_x
+  _1_7_tl_y: _7_center_y + _7_tl_y
+
+  _3_4__5_intersection_x: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_x - _1_5_br_x) - (_1_3_bl_x - _1_4_br_x) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
+  _3_4__5_intersection_y: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
+
+  _5__7_intersection_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
+  _5__7_intersection_y: ((_1_5_br_y - _1_5_tr_y) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_y - _1_7_tr_y) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
 
 points:
   zones:
@@ -118,7 +172,7 @@ points:
         spread: key_spread
       anchor:
         ref: matrix_inner_bottom
-        shift: [-1.5keycap_x - spacing, -keycap_y - spacing]
+        shift: [-1.5(keycap_x + spacing), -(keycap_y + spacing)]
       columns:
         outer:
         middle:
@@ -138,6 +192,10 @@ outlines:
     - what: rectangle
       where: true
       size: [keycap_x, keycap_y]
+    - what: rectangle
+      where:
+        ref: thumbs_inner_cluster
+      size: [keycap_x, keycap_y + is_thumbs_inner_1_5 * keycap_y/2]
 
   switches:
     - what: rectangle
@@ -151,25 +209,151 @@ outlines:
         shift: [mcu_shift_x, mcu_shift_y]
       size: [mcu_x, mcu_y]
 
+  switches_and_mcu:
+    - what: outline
+      name: switches
+    - what: outline
+      name: mcu
+
   keys_and_mcu:
     - what: outline
       name: keys
     - what: outline
       name: mcu
 
+  ref_pos:
+    - what: outline
+      name: keys
+    - what: outline
+      name: mcu
+    # ref centers
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [0, 0]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_2_center_x, _2_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_3_center_x, _3_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_4_center_x, _4_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_5_center_x, _5_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_6_center_x, _6_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_7_center_x, _7_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    # inner matrix corners
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_2_br_x, _1_2_br_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    # outer thumb corners
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_3_bl_x, _1_3_bl_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    # middle thumb corners
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_4_br_x, _1_4_br_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    # inner thumb corners
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_5_br_x, _1_5_br_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_5_bl_x, _1_5_bl_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_5_tr_x, _1_5_tr_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    # mcu corners
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_7_br_x, _1_7_br_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_7_tr_x, _1_7_tr_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_7_tl_x, _1_7_tl_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    # intersections
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_3_4__5_intersection_x, _3_4__5_intersection_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_5__7_intersection_x, _5__7_intersection_y]
+      radius: ref_position_circle_radius
+      operation: stack
+
   mcu_plate:
     # mcu plate
-    - what: rectangle
-      where:
-        ref: matrix_inner_top
-        shift: [mcu_plate_shift_x, mcu_plate_shift_y]
-      size: [mcu_plate_size_x, mcu_plate_size_y]
-    # left mcu plate
-    - what: rectangle
-      where:
-        ref: matrix_inner_top
-        shift: [left_mcu_plate_shift_x, left_mcu_plate_shift_y]
-      size: [left_mcu_plate_x, left_mcu_plate_y]
+    - what: polygon
+      points:
+        - ref: matrix_pinky_bottom
+          shift: [_1_7_tl_x, _1_7_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_7_tr_x, _1_7_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_5__7_intersection_x, _5__7_intersection_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_2_br_x, _1_2_br_y]
 
   matrix_plate:
     # outer bottom plate
@@ -222,25 +406,20 @@ outlines:
       size: [column_plate_x, column_plate_y]
 
   thumbs_plate:
-    # inner thumbs plate
-    - what: rectangle
-      where:
-        ref: thumbs_inner_cluster
-        shift: [thumbs_plate_inner_shift_x, thumbs_plate_inner_shift_y]
-      size: [thumbs_plate_inner_x, thumbs_plate_inner_y]
-    # inner thumbs plate shifted
-    - what: rectangle
-      where:
-        ref: thumbs_inner_cluster
-        shift: [thumbs_plate_inner_shifted_shift_x, thumbs_plate_inner_shifted_shift_y]
-      size: [thumbs_plate_inner_shifted_x, thumbs_plate_inner_shifted_y]
-    # outer middle thumbs plate
-    - what: rectangle
-      where:
-        ref: thumbs_outer_cluster
-        shift: [thumbs_plate_outer_middle_shift_x, thumbs_plate_outer_middle_shift_y]
-        rotate: thumbs_plate_outer_middle_rotate
-      size: [thumbs_plate_outer_middle_x, thumbs_plate_outer_middle_y]
+    - what: polygon
+      points:
+        - ref: matrix_pinky_bottom
+          shift: [key_spread + key_spread/2, -(keycap_y + plate_spacing)/2]
+        - ref: matrix_pinky_bottom
+          shift: [_1_3_bl_x, _1_3_bl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_3_4__5_intersection_x, _3_4__5_intersection_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_5_br_x, _1_5_br_y]
+        - ref: matrix_pinky_bottom
+          shift: [_5__7_intersection_x, _5__7_intersection_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_2_br_x, _1_2_br_y]
 
   plate:
     # keys plate
@@ -282,3 +461,8 @@ pcbs:
         where:
           ref: matrix_inner_top
           shift: [mcu_shift_x, mcu_shift_y]
+  ref_pos:
+    template: kicad8
+    outlines:
+      main:
+        outline: ref_pos
