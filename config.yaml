@@ -7,7 +7,7 @@ units:
   keycap_x: 16.5
   ## keycap height
   keycap_y: 16.5
-  ## space between keycaps (> 0)
+  ## space between keycaps
   spacing_unlimited: 1
   ### spacing limitation
   spacing: max(0.5, spacing_unlimited)
@@ -19,8 +19,6 @@ units:
   is_thumbs_inner_1_5_uncalculated: 0
   ### is inner thumbs keycap calculation
   is_thumbs_inner_1_5: (is_thumbs_inner_1_5_uncalculated == 1)
-  ## space between inner row and mcu
-  mcu_spacing: 2spacing
 
   # default values
   ## keys in column
@@ -36,6 +34,8 @@ units:
   thumb_keys_splay: min(max(0.001, thumb_keys_splay_unlimited), 45)
 
   # MCU
+  ## space between inner row and mcu
+  mcu_spacing: 2spacing
   mcu_x: 17.78
   mcu_y: 33
   mcu_shift_x: keycap_x/2 + mcu_spacing + mcu_x/2
