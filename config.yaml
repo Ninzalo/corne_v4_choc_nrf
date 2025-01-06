@@ -14,7 +14,7 @@ units:
   ## space between inner row and mcu
   mcu_spacing: 2spacing
   ## is inner thumbs keycap 1.5 * keycap
-  is_thumbs_inner_1_5: 0
+  is_thumbs_inner_1_5: 1
 
   # default values
   ## keys in column
@@ -61,6 +61,9 @@ units:
   _1_2_x: 4(keycap_x + spacing)
   _1_2_y: stagger_step
 
+  _1_8_x: (keycap_x + spacing)
+  _1_8_y: 2stagger_step
+
   _2_3_x: -1.5(keycap_x+spacing)
   _2_3_y: -(keycap_y + spacing)
 
@@ -76,8 +79,11 @@ units:
   _6_7_x: mcu_shift_x
   _6_7_y: mcu_shift_y
 
-  _2_center_x: _1_2_x
-  _2_center_y: _1_2_y
+  _1_center_x: 0
+  _1_center_y: 0
+
+  _2_center_x: _1_center_x + _1_2_x
+  _2_center_y: _1_center_y + _1_2_y
 
   _3_center_x: _2_center_x + _2_3_x
   _3_center_y: _2_center_y + _2_3_y
@@ -93,6 +99,9 @@ units:
 
   _7_center_x: _6_center_x + _6_7_x
   _7_center_y: _6_center_y + _6_7_y
+
+  _8_center_x: _1_center_x + _1_8_x
+  _8_center_y: _1_center_y + _1_8_y
 
   _2_br_x: (keycap_x + mcu_spacing)/2
   _2_br_y: -(keycap_y + plate_spacing)/2
@@ -236,7 +245,7 @@ outlines:
     - what: circle
       where:
         ref: matrix_pinky_bottom
-        shift: [0, 0]
+        shift: [_1_center_x, _1_center_y]
       radius: ref_position_circle_radius
       operation: stack
     - what: circle
@@ -273,6 +282,12 @@ outlines:
       where:
         ref: matrix_pinky_bottom
         shift: [_7_center_x, _7_center_y]
+      radius: ref_position_circle_radius
+      operation: stack
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_8_center_x, _8_center_y]
       radius: ref_position_circle_radius
       operation: stack
     # inner matrix corners
