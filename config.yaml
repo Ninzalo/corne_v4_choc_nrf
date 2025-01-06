@@ -420,6 +420,8 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_1_5_tr_x, _1_5_tr_y]
         - ref: matrix_pinky_bottom
+          shift: [_1_5_tl_x, _1_5_tl_y]
+        - ref: matrix_pinky_bottom
           shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
 
   matrix_plate:
