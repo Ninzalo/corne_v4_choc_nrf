@@ -31,7 +31,7 @@ units:
   thumb_keys_splay_unlimited: 11.94
   # thumb_keys_splay_unlimited: 0
   ### angle limitation
-  thumb_keys_splay: min(max(0.001, thumb_keys_splay_unlimited), 45)
+  thumb_keys_splay: min(max(0.001, thumb_keys_splay_unlimited), 44.987)
 
   # MCU
   ## space between inner row and mcu
