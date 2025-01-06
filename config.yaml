@@ -14,7 +14,7 @@ units:
   ## space between inner row and mcu
   mcu_spacing: 2spacing
   ## is inner thumbs keycap 1.5 * keycap
-  is_thumbs_inner_1_5: 1
+  is_thumbs_inner_1_5: 0
 
   # default values
   ## keys in column
@@ -152,6 +152,15 @@ units:
   _1_7_tr_y: _7_center_y + _7_tr_y
   _1_7_tl_x: _7_center_x + _7_tl_x
   _1_7_tl_y: _7_center_y + _7_tl_y
+
+  _8_br_x: (keycap_x + spacing)/2
+  _8_br_y: -(keycap_y + plate_spacing)/2 - 2stagger_step
+
+  _1_8_br_x: _8_center_x + _8_br_x
+  _1_8_br_y: _8_center_y + _8_br_y
+
+  _2_6__5_intersection_x: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_x - _1_5_tr_x) - (_1_7_tl_x - _1_2_br_x) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
+  _2_6__5_intersection_y: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
 
   _3_4__5_intersection_x: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_x - _1_5_br_x) - (_1_3_bl_x - _1_4_br_x) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
   _3_4__5_intersection_y: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
@@ -355,7 +364,20 @@ outlines:
         shift: [_1_7_tl_x, _1_7_tl_y]
       radius: ref_position_circle_radius
       operation: stack
+    # bottom ring corners
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_1_8_br_x, _1_8_br_y]
+      radius: ref_position_circle_radius
+      operation: stack
     # intersections
+    - what: circle
+      where:
+        ref: matrix_pinky_bottom
+        shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
+      radius: ref_position_circle_radius
+      operation: stack
     - what: circle
       where:
         ref: matrix_pinky_bottom
@@ -380,7 +402,9 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_5__7_intersection_x, _5__7_intersection_y]
         - ref: matrix_pinky_bottom
-          shift: [_1_2_br_x, _1_2_br_y]
+          shift: [_1_5_tr_x, _1_5_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
 
   matrix_plate:
     # outer bottom plate
@@ -436,7 +460,7 @@ outlines:
     - what: polygon
       points:
         - ref: matrix_pinky_bottom
-          shift: [key_spread + key_spread/2, -(keycap_y + plate_spacing)/2]
+          shift: [_1_8_br_x, _1_8_br_y]
         - ref: matrix_pinky_bottom
           shift: [_1_3_bl_x, _1_3_bl_y]
         - ref: matrix_pinky_bottom
@@ -444,7 +468,9 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_1_5_br_x, _1_5_br_y]
         - ref: matrix_pinky_bottom
-          shift: [_5__7_intersection_x, _5__7_intersection_y]
+          shift: [_1_5_tr_x, _1_5_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
         - ref: matrix_pinky_bottom
           shift: [_1_2_br_x, _1_2_br_y]
 
