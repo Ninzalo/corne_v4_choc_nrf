@@ -186,8 +186,8 @@ units:
   _5__7__no_s1_intersection_x: _5__7_intersection_numerator_x / _5__7_intersection_denominator_x
   _5__7__no_s1_intersection_y: _5__7_intersection_numerator_y / _5__7_intersection_denominator_y
 
-  _5__7_intersection_x: _5__7__no_s1_intersection_x * (_s1_b_x == _5__7__no_s1_intersection_x == _s1_t_x) + _s1_b_x * (_s1_b_x != _5__7__no_s1_intersection_x != _s1_t_x)
-  _5__7_intersection_y: _5__7__no_s1_intersection_y * (_s1_b_y <= _5__7__no_s1_intersection_y <= _s1_t_y) + _1_2_br_y * (_s1_b_y > _5__7__no_s1_intersection_y) + _1_2_br_y * (_5__7__no_s1_intersection_y > _s1_t_y)
+  _5__7_intersection_x: _5__7__no_s1_intersection_x * (_s1_b_x == _5__7__no_s1_intersection_x == _s1_t_x) + _s1_b_x * (1 - (_s1_b_x == _5__7__no_s1_intersection_x == _s1_t_x))
+  _5__7_intersection_y: _5__7__no_s1_intersection_y * (_s1_b_y <= _5__7__no_s1_intersection_y <= _s1_t_y) + _1_2_br_y * (1 - (_s1_b_y <= _5__7__no_s1_intersection_y <= _s1_t_y))
 
 points:
   zones:
