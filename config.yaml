@@ -189,6 +189,7 @@ points:
             splay: -thumb_keys_splay
             origin: [-(keycap_x + spacing)/2, -(keycap_y + spacing)/2]
             shift: [0, is_thumbs_inner_1_5 * keycap_y/4]
+            rotate: is_thumbs_inner_1_5 * 90
       rows:
         cluster:
 
@@ -200,7 +201,7 @@ outlines:
     - what: rectangle
       where:
         ref: thumbs_inner_cluster
-      size: [keycap_x, keycap_y + is_thumbs_inner_1_5 * keycap_y/2]
+      size: [keycap_x + is_thumbs_inner_1_5 * keycap_y/2, keycap_y]
 
   switches:
     - what: rectangle
