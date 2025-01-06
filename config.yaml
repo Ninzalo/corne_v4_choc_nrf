@@ -167,14 +167,27 @@ units:
   _1_8_br_x: _8_center_x + _8_br_x
   _1_8_br_y: _8_center_y + _8_br_y
 
+  _s1_b_x: _1_7_br_x
+  _s1_b_y: _1_5_tr_y
+  _s1_t_x: _s1_b_x
+  _s1_t_y: _1_7_br_y
+
   _2_6__5_intersection_x: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_x - _1_5_tr_x) - (_1_7_tl_x - _1_2_br_x) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
   _2_6__5_intersection_y: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
 
   _3_4__5_intersection_x: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_x - _1_5_br_x) - (_1_3_bl_x - _1_4_br_x) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
   _3_4__5_intersection_y: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
 
-  _5__7_intersection_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
-  _5__7_intersection_y: ((_1_5_br_y - _1_5_tr_y) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_y - _1_7_tr_y) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
+  _5__7_intersection_numerator_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) 
+  _5__7_intersection_numerator_y: ((_1_5_br_y - _1_5_tr_y) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_y - _1_7_tr_y) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y))
+  _5__7_intersection_denominator_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
+  _5__7_intersection_denominator_y: ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
+
+  _5__7__no_s1_intersection_x: _5__7_intersection_numerator_x / _5__7_intersection_denominator_x
+  _5__7__no_s1_intersection_y: _5__7_intersection_numerator_y / _5__7_intersection_denominator_y
+
+  _5__7_intersection_x: _5__7__no_s1_intersection_x * (_s1_b_x == _5__7__no_s1_intersection_x == _s1_t_x) + _s1_b_x * (_s1_b_x != _5__7__no_s1_intersection_x != _s1_t_x)
+  _5__7_intersection_y: _5__7__no_s1_intersection_y * (_s1_b_y <= _5__7__no_s1_intersection_y <= _s1_t_y) + _1_2_br_y * (_s1_b_y > _5__7__no_s1_intersection_y) + _1_2_br_y * (_5__7__no_s1_intersection_y > _s1_t_y)
 
 points:
   zones:
