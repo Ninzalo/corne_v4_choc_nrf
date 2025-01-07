@@ -25,6 +25,10 @@ units:
   keys_x: 6
   ## amount of columns
   keys_y: 3
+  ## switch width
+  switch_x: 15
+  ## switch height
+  switch_y: 15
   key_spread: keycap_x + spacing
   key_padding: keycap_y + spacing
   stagger_step: 2.381
@@ -246,7 +250,7 @@ outlines:
   switches:
     - what: rectangle
       where: true
-      size: [15, 15]
+      size: [switch_x, switch_y]
 
   mcu:
     - what: rectangle
