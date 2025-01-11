@@ -402,15 +402,7 @@ outlines:
       name: switches
       operation: stack
 
-  ref_pos:
-    - what: outline
-      name: keys
-    - what: outline
-      name: switches
-      operation: stack
-    - what: outline
-      name: mcu
-    # ref centers
+  ref_centers:
     - what: circle
       where:
         ref: matrix_pinky_bottom
@@ -495,6 +487,8 @@ outlines:
         shift: [_14_center_x, _14_center_y]
       radius: ref_position_circle_radius
       operation: stack
+
+  ref_corners:
     # pinky bottom corners (1)
     - what: circle
       where:
@@ -665,7 +659,8 @@ outlines:
         shift: [_1_14_tr_x, _1_14_tr_y]
       radius: ref_position_circle_radius
       operation: stack
-    # intersections
+
+  ref_intersections:
     - what: circle
       where:
         ref: matrix_pinky_bottom
@@ -683,6 +678,24 @@ outlines:
         ref: matrix_pinky_bottom
         shift: [_5__7_intersection_x, _5__7_intersection_y]
       radius: ref_position_circle_radius
+      operation: stack
+
+  ref_pos:
+    - what: outline
+      name: keys
+    - what: outline
+      name: switches
+      operation: stack
+    - what: outline
+      name: mcu
+    - what: outline
+      name: ref_centers
+      operation: stack
+    - what: outline
+      name: ref_corners
+      operation: stack
+    - what: outline
+      name: ref_intersections
       operation: stack
 
   mcu_plate:
