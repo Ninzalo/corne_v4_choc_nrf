@@ -161,10 +161,10 @@ units:
   _1_br_x: (keycap_x + plate_spacing)/2
   _1_br_y: -(keycap_y + plate_spacing)/2
 
-  _2_br_x: (keycap_x + mcu_spacing)/2
-  _2_br_y: -(keycap_y + plate_spacing)/2
   _2_bl_x: -(keycap_x + plate_spacing)/2
   _2_bl_y: -(keycap_y + plate_spacing)/2
+  _2_br_x: (keycap_x + plate_spacing)/2
+  _2_br_y: -(keycap_y + plate_spacing)/2
 
   _3_bl_x: -(keycap_x + plate_spacing)/2
   _3_bl_y: -(keycap_y + plate_spacing)/2
@@ -195,7 +195,7 @@ units:
   _7_br_y: -(mcu_y + plate_spacing)/2
   _7_tr_x: _7_br_x
   _7_tr_y: (mcu_y + plate_spacing)/2
-  _7_tl_x: -(mcu_x + mcu_spacing)/2
+  _7_tl_x: -(mcu_x - plate_spacing)/2 - mcu_spacing
   _7_tl_y: _7_tr_y
 
   _8_br_x: (keycap_x + spacing)/2
@@ -229,30 +229,30 @@ units:
   _1_1_br_x: _1_center_x + _1_br_x
   _1_1_br_y: _1_center_y + _1_br_y
 
-  _1_2_br_x: _2_center_x + _2_br_x
-  _1_2_br_y: _2_center_y + _2_br_y
   _1_2_bl_x: _2_center_x + _2_bl_x
   _1_2_bl_y: _2_center_y + _2_bl_y
+  _1_2_br_x: _2_center_x + _2_br_x
+  _1_2_br_y: _2_center_y + _2_br_y
 
   _1_3_bl_x: _3_center_x + _3_bl_x
   _1_3_bl_y: _3_center_y + _3_bl_y
 
-  _1_3_tr_x: _3_center_x + _3_tr_x
-  _1_3_tr_y: _3_center_y + _3_tr_y
   _1_3_tl_x: _3_center_x + _3_tl_x
   _1_3_tl_y: _3_center_y + _3_tl_y
+  _1_3_tr_x: _3_center_x + _3_tr_x
+  _1_3_tr_y: _3_center_y + _3_tr_y
 
   _1_4_br_x: _4_center_x + _4_br_x
   _1_4_br_y: _4_center_y + _4_br_y
 
-  _1_5_br_x: _5_center_x + _5_br_x
-  _1_5_br_y: _5_center_y + _5_br_y
   _1_5_bl_x: _5_center_x + _5_bl_x
   _1_5_bl_y: _5_center_y + _5_bl_y
-  _1_5_tr_x: _5_center_x + _5_tr_x
-  _1_5_tr_y: _5_center_y + _5_tr_y
+  _1_5_br_x: _5_center_x + _5_br_x
+  _1_5_br_y: _5_center_y + _5_br_y
   _1_5_tl_x: _5_center_x + _5_tl_x
   _1_5_tl_y: _5_center_y + _5_tl_y
+  _1_5_tr_x: _5_center_x + _5_tr_x
+  _1_5_tr_y: _5_center_y + _5_tr_y
 
   _1_6_tl_x: _6_center_x + _6_tl_x
   _1_6_tl_y: _6_center_y + _6_tl_y
@@ -261,10 +261,10 @@ units:
 
   _1_7_br_x: _7_center_x + _7_br_x
   _1_7_br_y: _7_center_y + _7_br_y
-  _1_7_tr_x: _7_center_x + _7_tr_x
-  _1_7_tr_y: _7_center_y + _7_tr_y
   _1_7_tl_x: _7_center_x + _7_tl_x
   _1_7_tl_y: _7_center_y + _7_tl_y
+  _1_7_tr_x: _7_center_x + _7_tr_x
+  _1_7_tr_y: _7_center_y + _7_tr_y
 
   _1_8_br_x: _8_center_x + _8_br_x
   _1_8_br_y: _8_center_y + _8_br_y
@@ -298,25 +298,27 @@ units:
   _s1_b_y: _1_5_tr_y
   _s1_t_x: _s1_b_x
   _s1_t_y: _1_7_br_y
+  _s1_default_x: _1_7_br_x
+  _s1_default_y: _1_5_tr_y
 
   _s2_t_x: _1_2_br_x
   _s2_t_y: _2_center_y
 
   ## intersections
-  _2_6__5__no_s2_intersection_x: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_x - _1_5_tr_x) - (_1_7_tl_x - _1_2_br_x) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
-  _2_6__5__no_s2_intersection_y: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
+  _2br_7tl__5tl_5tr__no_s2_intersection_x: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_x - _1_5_tr_x) - (_1_7_tl_x - _1_2_br_x) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
+  _2br_7tl__5tl_5tr__no_s2_intersection_y: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
 
-  _2_6__5_intersection_x: _2_6__5__no_s2_intersection_x * (_s2_t_x == _2_6__5__no_s2_intersection_x) + _s2_t_x * (1 - (_s2_t_x == _2_6__5__no_s2_intersection_x))
-  _2_6__5_intersection_y: _2_6__5__no_s2_intersection_y * (_s2_t_y >= _2_6__5__no_s2_intersection_y) + _s2_t_y * (1 - (_s2_t_y >= _2_6__5__no_s2_intersection_y))
+  _2br_7tl__5tl_5tr_intersection_x: _2br_7tl__5tl_5tr__no_s2_intersection_x * (_s2_t_x == _2br_7tl__5tl_5tr__no_s2_intersection_x) + _s2_t_x * (1 - (_s2_t_x == _2br_7tl__5tl_5tr__no_s2_intersection_x))
+  _2br_7tl__5tl_5tr_intersection_y: _2br_7tl__5tl_5tr__no_s2_intersection_y * (_s2_t_y >= _2br_7tl__5tl_5tr__no_s2_intersection_y) + _s2_t_y * (1 - (_s2_t_y >= _2br_7tl__5tl_5tr__no_s2_intersection_y))
 
-  _3_4__5_intersection_x: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_x - _1_5_br_x) - (_1_3_bl_x - _1_4_br_x) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
-  _3_4__5_intersection_y: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
+  _3bl_4br__5bl_5br_intersection_x: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_x - _1_5_br_x) - (_1_3_bl_x - _1_4_br_x) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
+  _3bl_4br__5bl_5br_intersection_y: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
 
-  _5__7__no_s1_intersection_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
-  _5__7__no_s1_intersection_y: ((_1_5_br_y - _1_5_tr_y) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_y - _1_7_tr_y) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
+  _5br_5tr__7tr_7br__no_s1_intersection_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
+  _5br_5tr__7tr_7br__no_s1_intersection_y: ((_1_5_br_y - _1_5_tr_y) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_y - _1_7_tr_y) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
 
-  _5__7_intersection_x: _5__7__no_s1_intersection_x * (_s1_b_x == _5__7__no_s1_intersection_x == _s1_t_x) + _s1_b_x * (1 - (_s1_b_x == _5__7__no_s1_intersection_x == _s1_t_x))
-  _5__7_intersection_y: _5__7__no_s1_intersection_y * (_s1_b_y <= _5__7__no_s1_intersection_y <= _s1_t_y) + _1_5_tr_y * (1 - (_s1_b_y <= _5__7__no_s1_intersection_y <= _s1_t_y))
+  _5br_5tr__7tr_7br_intersection_x: _5br_5tr__7tr_7br__no_s1_intersection_x * (_s1_b_x == _5br_5tr__7tr_7br__no_s1_intersection_x == _s1_t_x) + _s1_default_x * (1 - (_s1_b_x == _5br_5tr__7tr_7br__no_s1_intersection_x == _s1_t_x))
+  _5br_5tr__7tr_7br_intersection_y: _5br_5tr__7tr_7br__no_s1_intersection_y * (_s1_b_y <= _5br_5tr__7tr_7br__no_s1_intersection_y <= _s1_t_y) + _s1_default_y * (1 - (_s1_b_y <= _5br_5tr__7tr_7br__no_s1_intersection_y <= _s1_t_y))
 
 points:
   zones:
@@ -500,13 +502,13 @@ outlines:
     - what: circle
       where:
         ref: matrix_pinky_bottom
-        shift: [_1_2_br_x, _1_2_br_y]
+        shift: [_1_2_bl_x, _1_2_bl_y]
       radius: ref_position_circle_radius
       operation: stack
     - what: circle
       where:
         ref: matrix_pinky_bottom
-        shift: [_1_2_bl_x, _1_2_bl_y]
+        shift: [_1_2_br_x, _1_2_br_y]
       radius: ref_position_circle_radius
       operation: stack
     # outer thumb corners (3)
@@ -664,19 +666,19 @@ outlines:
     - what: circle
       where:
         ref: matrix_pinky_bottom
-        shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
+        shift: [_2br_7tl__5tl_5tr_intersection_x, _2br_7tl__5tl_5tr_intersection_y]
       radius: ref_position_circle_radius
       operation: stack
     - what: circle
       where:
         ref: matrix_pinky_bottom
-        shift: [_3_4__5_intersection_x, _3_4__5_intersection_y]
+        shift: [_3bl_4br__5bl_5br_intersection_x, _3bl_4br__5bl_5br_intersection_y]
       radius: ref_position_circle_radius
       operation: stack
     - what: circle
       where:
         ref: matrix_pinky_bottom
-        shift: [_5__7_intersection_x, _5__7_intersection_y]
+        shift: [_5br_5tr__7tr_7br_intersection_x, _5br_5tr__7tr_7br_intersection_y]
       radius: ref_position_circle_radius
       operation: stack
 
@@ -707,73 +709,59 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_1_7_tr_x, _1_7_tr_y]
         - ref: matrix_pinky_bottom
-          shift: [_5__7_intersection_x, _5__7_intersection_y]
+          shift: [_5br_5tr__7tr_7br_intersection_x, _5br_5tr__7tr_7br_intersection_y]
         - ref: matrix_pinky_bottom
           shift: [_1_5_tr_x, _1_5_tr_y]
         - ref: matrix_pinky_bottom
           shift: [_1_5_tl_x, _1_5_tl_y]
         - ref: matrix_pinky_bottom
-          shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
+          shift: [_2br_7tl__5tl_5tr_intersection_x, _2br_7tl__5tl_5tr_intersection_y]
 
   matrix_plate:
-    # outer bottom plate
-    - what: rectangle
-      where:
-        ref: matrix_outer_bottom
-        shift: [outer_bottom_shift_x, outer_bottom_shift_y]
-      size: [outer_bottom_size_x, outer_bottom_size_y]
-    # ring plate
-    - what: rectangle
-      where:
-        ref: matrix_ring_home
-        shift: [column_plate_shift_x, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
-    # right ring plate
-    - what: rectangle
-      where:
-        ref: matrix_ring_home
-        shift: [column_plate_shift_x + (key_spread)/2, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
-    # middle plate
-    - what: rectangle
-      where:
-        ref: matrix_middle_home
-        shift: [column_plate_shift_x, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
-    # index plate
-    - what: rectangle
-      where:
-        ref: matrix_index_home
-        shift: [column_plate_shift_x, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
-    # left index plate
-    - what: rectangle
-      where:
-        ref: matrix_index_home
-        shift: [column_plate_shift_x - (key_spread)/2, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
-    # inner plate
-    - what: rectangle
-      where:
-        ref: matrix_inner_home
-        shift: [column_plate_shift_x, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
-    # left inner plate
-    - what: rectangle
-      where:
-        ref: matrix_inner_home
-        shift: [column_plate_shift_x - (key_spread)/2, column_plate_shift_y]
-      size: [column_plate_x, column_plate_y]
+    - what: polygon
+      points:
+        - ref: matrix_pinky_bottom
+          shift: [_1_1_br_x, _1_1_br_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_9_bl_x, _1_9_bl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_10_tl_x, _1_10_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_11_tr_x, _1_11_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_12_tl_x, _1_12_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_12_tr_x, _1_12_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_13_tl_x, _1_13_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_13_tr_x, _1_13_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_14_tl_x, _1_14_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_14_tr_x, _1_14_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_6_tl_x, _1_6_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_6_tr_x, _1_6_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_2_br_x, _1_2_br_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_2_bl_x, _1_2_bl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_3_tr_x, _1_3_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_3_tl_x, _1_3_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_8_br_x, _1_8_br_y]
 
   thumbs_plate:
     - what: polygon
       points:
         - ref: matrix_pinky_bottom
-          shift: [_1_8_br_x, _1_8_br_y]
-        - ref: matrix_pinky_bottom
           shift: [_1_3_bl_x, _1_3_bl_y]
         - ref: matrix_pinky_bottom
-          shift: [_3_4__5_intersection_x, _3_4__5_intersection_y]
+          shift: [_3bl_4br__5bl_5br_intersection_x, _3bl_4br__5bl_5br_intersection_y]
         - ref: matrix_pinky_bottom
           shift: [_1_5_br_x, _1_5_br_y]
         - ref: matrix_pinky_bottom
@@ -781,14 +769,20 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_1_5_tl_x, _1_5_tl_y]
         - ref: matrix_pinky_bottom
-          shift: [_2_6__5_intersection_x, _2_6__5_intersection_y]
-        - ref: matrix_pinky_bottom
           shift: [_1_2_br_x, _1_2_br_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_2_bl_x, _1_2_bl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_3_tr_x, _1_3_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_3_tl_x, _1_3_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_8_br_x, _1_8_br_y]
 
   plate:
     # mcu plate
-    - what: outline
-      name: mcu_plate
+    # - what: outline
+    #   name: mcu_plate
     # matrix plate
     - what: outline
       name: matrix_plate

@@ -11,7 +11,7 @@
   (paper "A3")
   (title_block
     (title "ref_pos")
-    (date "2025-01-11")
+    (date "2025-01-12")
     (rev "v1.0.0")
     (company "Unknown")
   )
@@ -271,8 +271,8 @@
 (gr_circle (center 52.5 -42.143) (end 53 -42.143) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
 (gr_circle (center 70 -39.762) (end 70.5 -39.762) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
 (gr_circle (center 26.75 9.25) (end 27.25 9.25) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
-(gr_circle (center 96.75 6.869) (end 97.25 6.869) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
 (gr_circle (center 78.25 6.869) (end 78.75 6.869) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
+(gr_circle (center 96.75 6.869) (end 97.25 6.869) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
 (gr_circle (center 52 24.369) (end 52.5 24.369) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
 (gr_circle (center 52 5.869) (end 52.5 5.869) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
 (gr_circle (center 70.5 5.869) (end 71 5.869) (layer Edge.Cuts) (stroke (width 0.15) (type default)) (fill none))
