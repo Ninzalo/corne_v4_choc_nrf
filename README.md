@@ -11,3 +11,8 @@ This version of Corne is based on the:
 </ul>
 
 All other calculations are done automatically based on the above values.
+
+Paste the config from the `config.yaml` into [Ergogen's](https://ergogen.ceoloide.com/) config section to see the result.
+```sh
+cat ./config.yaml | pbcopy
+```
