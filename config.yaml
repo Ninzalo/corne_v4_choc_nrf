@@ -8,20 +8,20 @@ units:
   ## keycap height
   keycap_y: 16.5
   ## space between keycaps
-  spacing_unlimited: 1
+  spacing: 1
   ## 1.5x keycap sizing (leave default if you're not using them)
   keycap_1_5_x: 1.5keycap_x
   keycap_1_5_y: keycap_y
-  ### spacing limitation
-  spacing: max(0.5, spacing_unlimited)
-  ## additional spacing around the plate (2 is recomended)
-  plate_spacing_unlimited: 2
-  ### plate spacing limitation
-  plate_spacing: max(spacing, plate_spacing_unlimited)
+  ### spacing_limited limitation
+  spacing_limited: max(0.5, spacing)
+  ## additional spacing_limited around the plate (2 is recomended)
+  plate_spacing: 2
+  ### plate spacing_limited limitation
+  plate_spacing_limited: max(spacing_limited, plate_spacing)
   ## is inner thumbs keycap 1.5x
-  is_thumbs_inner_1_5_uncalculated: 0
+  is_thumbs_inner_1_5: 0
   ### is inner thumbs keycap calculation
-  is_thumbs_inner_1_5: (is_thumbs_inner_1_5_uncalculated == 1)
+  is_thumbs_inner_1_5_calculated: (is_thumbs_inner_1_5 == 1)
 
   # default values
   ## keys in column
@@ -32,40 +32,40 @@ units:
   switch_x: 15
   ## switch height
   switch_y: 15
-  key_spread: keycap_x + spacing
-  key_padding: keycap_y + spacing
+  key_spread: keycap_x + spacing_limited
+  key_padding: keycap_y + spacing_limited
   stagger_step: 2.381
-  thumb_keys_splay_unlimited: 11.94
-  # thumb_keys_splay_unlimited: 0
+  thumb_keys_splay: 11.94
+  # thumb_keys_splay: 0
   ### angle limitation
-  thumb_keys_splay: min(max(0.001, thumb_keys_splay_unlimited), 44.987)
+  thumb_keys_splay_limited: min(max(1e-10, thumb_keys_splay), 44.987)
 
   # MCU
   ## space between inner row and mcu
-  mcu_spacing: 2spacing
+  mcu_spacing: 2spacing_limited
   mcu_x: 17.78
   mcu_y: 33
   mcu_shift_x: keycap_x/2 + mcu_spacing + mcu_x/2
   mcu_shift_y: +keycap_y/2 - mcu_y/2 - stagger_step
 
   # single key plate
-  key_plate_x: keycap_x + plate_spacing
-  key_plate_y: keycap_x + plate_spacing
+  key_plate_x: keycap_x + plate_spacing_limited
+  key_plate_y: keycap_x + plate_spacing_limited
 
   # tile key plate
-  tile_plate_x: (keys_x * keycap_x + (keys_x - 1) * spacing)/keys_x
-  tile_plate_y: (keys_y * keycap_y + (keys_y - 1) * spacing)/keys_y
-  tile_shift_x: (-keycap_x/2 + keys_x * keycap_x/2 + (keys_x - 1) * spacing/2)/keys_x
-  tile_shift_y: (-keycap_y/2 + keys_y * keycap_y/2 + (keys_y - 1) * spacing/2)/keys_y
+  tile_plate_x: (keys_x * keycap_x + (keys_x - 1) * spacing_limited)/keys_x
+  tile_plate_y: (keys_y * keycap_y + (keys_y - 1) * spacing_limited)/keys_y
+  tile_shift_x: (-keycap_x/2 + keys_x * keycap_x/2 + (keys_x - 1) * spacing_limited/2)/keys_x
+  tile_shift_y: (-keycap_y/2 + keys_y * keycap_y/2 + (keys_y - 1) * spacing_limited/2)/keys_y
 
   # column plate
   column_plate_x: key_plate_x
-  column_plate_y: keys_y * tile_plate_y + plate_spacing
+  column_plate_y: keys_y * tile_plate_y + plate_spacing_limited
   column_plate_shift_x: 0
   column_plate_shift_y: 0
 
   # outer bottom plate
-  outer_bottom_size_x: keys_x * tile_plate_x + plate_spacing
+  outer_bottom_size_x: keys_x * tile_plate_x + plate_spacing_limited
   outer_bottom_size_y: column_plate_y
   outer_bottom_shift_x: keys_x * tile_shift_x
   outer_bottom_shift_y: keys_y * tile_shift_y
@@ -73,43 +73,43 @@ units:
   # ref positions
   ref_position_circle_radius: 0.5
 
-  _1_2_x: 4(keycap_x + spacing)
+  _1_2_x: 4(keycap_x + spacing_limited)
   _1_2_y: stagger_step
 
-  _1_8_x: (keycap_x + spacing)
+  _1_8_x: (keycap_x + spacing_limited)
   _1_8_y: 2stagger_step
 
-  _1_9_x: -(keycap_x + spacing)
+  _1_9_x: -(keycap_x + spacing_limited)
   _1_9_y: 0
 
   _1_11_x: 0
-  _1_11_y: 2(keycap_y + spacing)
+  _1_11_y: 2(keycap_y + spacing_limited)
 
-  _2_3_x: -1.5(keycap_x+spacing)
-  _2_3_y: -(keycap_y + spacing)
+  _2_3_x: -1.5(keycap_x+spacing_limited)
+  _2_3_y: -(keycap_y + spacing_limited)
 
   _2_6_x: 0
-  _2_6_y: 2(keycap_y + spacing)
+  _2_6_y: 2(keycap_y + spacing_limited)
 
-  _3_4_x: (keycap_x + spacing)/2 + cos((90 - thumb_keys_splay) * pi/180) * spacing/2 + cos(-thumb_keys_splay * pi/180) * spacing/2 + cos(-thumb_keys_splay * pi/180) * keycap_x/2 + cos((90 - thumb_keys_splay) * pi/180) * keycap_y/2
-  _3_4_y: -(keycap_y + spacing)/2 + sin((90 - thumb_keys_splay) * pi/180) * spacing/2 + sin(-thumb_keys_splay * pi/180) * spacing/2 + sin((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay * pi/180) * keycap_x/2
+  _3_4_x: (keycap_x + spacing_limited)/2 + cos((90 - thumb_keys_splay_limited) * pi/180) * spacing_limited/2 + cos(-thumb_keys_splay_limited * pi/180) * spacing_limited/2 + cos(-thumb_keys_splay_limited * pi/180) * keycap_x/2 + cos((90 - thumb_keys_splay_limited) * pi/180) * keycap_y/2
+  _3_4_y: -(keycap_y + spacing_limited)/2 + sin((90 - thumb_keys_splay_limited) * pi/180) * spacing_limited/2 + sin(-thumb_keys_splay_limited * pi/180) * spacing_limited/2 + sin((90 - thumb_keys_splay_limited) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay_limited * pi/180) * keycap_x/2
 
-  _4_5_x: -cos((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-thumb_keys_splay * pi/180) * keycap_x/2 + cos(-thumb_keys_splay * pi/180) * spacing/2 - cos((90 - thumb_keys_splay) * pi/180) * spacing/2 + cos((90 - 2thumb_keys_splay) * pi/180) * spacing/2 + cos(-2thumb_keys_splay * pi/180) * spacing/2 + is_thumbs_inner_1_5 * ( cos((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 + cos(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay * pi/180) * keycap_x/2 )
-  _4_5_y: -sin((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay * pi/180) * keycap_x/2 + sin(-thumb_keys_splay * pi/180) * spacing/2 - sin((90 - thumb_keys_splay) * pi/180) * spacing/2 + sin((90 - 2thumb_keys_splay) * pi/180) * spacing/2 + sin(-2thumb_keys_splay * pi/180) * spacing/2 + is_thumbs_inner_1_5 * ( sin((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 + sin(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay * pi/180) * keycap_x/2 )
+  _4_5_x: -cos((90 - thumb_keys_splay_limited) * pi/180) * keycap_y/2 + cos(-thumb_keys_splay_limited * pi/180) * keycap_x/2 + cos(-thumb_keys_splay_limited * pi/180) * spacing_limited/2 - cos((90 - thumb_keys_splay_limited) * pi/180) * spacing_limited/2 + cos((90 - 2thumb_keys_splay_limited) * pi/180) * spacing_limited/2 + cos(-2thumb_keys_splay_limited * pi/180) * spacing_limited/2 + is_thumbs_inner_1_5_calculated * ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 + cos(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 )
+  _4_5_y: -sin((90 - thumb_keys_splay_limited) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay_limited * pi/180) * keycap_x/2 + sin(-thumb_keys_splay_limited * pi/180) * spacing_limited/2 - sin((90 - thumb_keys_splay_limited) * pi/180) * spacing_limited/2 + sin((90 - 2thumb_keys_splay_limited) * pi/180) * spacing_limited/2 + sin(-2thumb_keys_splay_limited * pi/180) * spacing_limited/2 + is_thumbs_inner_1_5_calculated * ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 + sin(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 )
 
   _6_7_x: mcu_shift_x
   _6_7_y: mcu_shift_y
 
   _8_12_x: 0
-  _8_12_y: 2(keycap_y + spacing)
+  _8_12_y: 2(keycap_y + spacing_limited)
 
   _9_10_x: 0
-  _9_10_y: 2(keycap_y + spacing)
+  _9_10_y: 2(keycap_y + spacing_limited)
 
-  _12_13_x: (keycap_x + spacing)
+  _12_13_x: (keycap_x + spacing_limited)
   _12_13_y: stagger_step
 
-  _13_14_x: (keycap_x + spacing)
+  _13_14_x: (keycap_x + spacing_limited)
   _13_14_y: -stagger_step
 
   ## centers
@@ -158,72 +158,72 @@ units:
   ## corners
 
   # relative to center corners
-  _1_br_x: (keycap_x + plate_spacing)/2
-  _1_br_y: -(keycap_y + plate_spacing)/2
+  _1_br_x: (keycap_x + plate_spacing_limited)/2
+  _1_br_y: -(keycap_y + plate_spacing_limited)/2
 
-  _2_bl_x: -(keycap_x + plate_spacing)/2
-  _2_bl_y: -(keycap_y + plate_spacing)/2
-  _2_br_x: (keycap_x + plate_spacing)/2
-  _2_br_y: -(keycap_y + plate_spacing)/2
+  _2_bl_x: -(keycap_x + plate_spacing_limited)/2
+  _2_bl_y: -(keycap_y + plate_spacing_limited)/2
+  _2_br_x: (keycap_x + plate_spacing_limited)/2
+  _2_br_y: -(keycap_y + plate_spacing_limited)/2
 
-  _3_bl_x: -(keycap_x + plate_spacing)/2
-  _3_bl_y: -(keycap_y + plate_spacing)/2
+  _3_bl_x: -(keycap_x + plate_spacing_limited)/2
+  _3_bl_y: -(keycap_y + plate_spacing_limited)/2
 
-  _3_tl_x: -(keycap_x + plate_spacing)/2
-  _3_tl_y: (keycap_y + plate_spacing)/2
-  _3_tr_x: (keycap_x + plate_spacing)/2
-  _3_tr_y: (keycap_y + plate_spacing)/2
+  _3_tl_x: -(keycap_x + plate_spacing_limited)/2
+  _3_tl_y: (keycap_y + plate_spacing_limited)/2
+  _3_tr_x: (keycap_x + plate_spacing_limited)/2
+  _3_tr_y: (keycap_y + plate_spacing_limited)/2
 
-  _4_br_x: cos(-thumb_keys_splay * pi/180) * keycap_x/2 - cos((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-thumb_keys_splay * pi/180) * plate_spacing/2 - cos((90 - thumb_keys_splay) * pi/180) * plate_spacing/2
-  _4_br_y: sin(-thumb_keys_splay * pi/180) * keycap_x/2 - sin((90 - thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay * pi/180) * plate_spacing/2 - sin((90 - thumb_keys_splay) * pi/180) * plate_spacing/2
+  _4_br_x: cos(-thumb_keys_splay_limited * pi/180) * keycap_x/2 - cos((90 - thumb_keys_splay_limited) * pi/180) * keycap_y/2 + cos(-thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 - cos((90 - thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2
+  _4_br_y: sin(-thumb_keys_splay_limited * pi/180) * keycap_x/2 - sin((90 - thumb_keys_splay_limited) * pi/180) * keycap_y/2 + sin(-thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 - sin((90 - thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2
 
-  _5_br_x: is_thumbs_inner_1_5 * ( -cos((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 + cos(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( -cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( -cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 + cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_br_y: is_thumbs_inner_1_5 * ( -sin((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 + sin(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( -sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( -sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 + sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_bl_x: is_thumbs_inner_1_5 * ( -cos((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 - cos(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( -cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 - cos(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( -cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_bl_y: is_thumbs_inner_1_5 * ( -sin((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 - sin(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( -sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 - sin(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( -sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_tr_x: is_thumbs_inner_1_5 * ( cos((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 + cos(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 + cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_tr_y: is_thumbs_inner_1_5 * ( sin((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 + sin(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 + sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_tl_x: is_thumbs_inner_1_5 * ( cos((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 - cos(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( cos((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 - cos(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( cos((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - cos(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
-  _5_tl_y: is_thumbs_inner_1_5 * ( sin((90 - 2thumb_keys_splay) * pi/180) * keycap_1_5_x/2 - sin(-2thumb_keys_splay * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5) * ( sin((90 - 2thumb_keys_splay) * pi/180) * keycap_y/2 - sin(-2thumb_keys_splay * pi/180) * keycap_x/2 ) + ( sin((90 - 2thumb_keys_splay) * pi/180) * plate_spacing/2 - sin(-2thumb_keys_splay * pi/180) * plate_spacing/2 )
+  _5_br_x: is_thumbs_inner_1_5_calculated * ( -cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 + cos(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( -cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( -cos((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 + cos(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_br_y: is_thumbs_inner_1_5_calculated * ( -sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 + sin(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( -sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( -sin((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 + sin(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_bl_x: is_thumbs_inner_1_5_calculated * ( -cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 - cos(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( -cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 - cos(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( -cos((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 - cos(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_bl_y: is_thumbs_inner_1_5_calculated * ( -sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 - sin(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( -sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 - sin(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( -sin((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 - sin(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_tr_x: is_thumbs_inner_1_5_calculated * ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 + cos(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 + cos(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 + cos(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_tr_y: is_thumbs_inner_1_5_calculated * ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 + sin(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 + sin(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 + sin(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_tl_x: is_thumbs_inner_1_5_calculated * ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 - cos(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 - cos(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( cos((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 - cos(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
+  _5_tl_y: is_thumbs_inner_1_5_calculated * ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_1_5_x/2 - sin(-2thumb_keys_splay_limited * pi/180) * keycap_1_5_y/2 ) + (1 - is_thumbs_inner_1_5_calculated) * ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * keycap_y/2 - sin(-2thumb_keys_splay_limited * pi/180) * keycap_x/2 ) + ( sin((90 - 2thumb_keys_splay_limited) * pi/180) * plate_spacing_limited/2 - sin(-2thumb_keys_splay_limited * pi/180) * plate_spacing_limited/2 )
 
-  _6_tl_x: -keycap_x/2 - spacing + plate_spacing/2
-  _6_tl_y: (keycap_y + plate_spacing)/2
-  _6_tr_x: (keycap_x + plate_spacing)/2
-  _6_tr_y: (keycap_y + plate_spacing)/2
+  _6_tl_x: -keycap_x/2 - spacing_limited + plate_spacing_limited/2
+  _6_tl_y: (keycap_y + plate_spacing_limited)/2
+  _6_tr_x: (keycap_x + plate_spacing_limited)/2
+  _6_tr_y: (keycap_y + plate_spacing_limited)/2
 
-  _7_br_x: (mcu_x + plate_spacing)/2
-  _7_br_y: -(mcu_y + plate_spacing)/2
+  _7_br_x: (mcu_x + plate_spacing_limited)/2
+  _7_br_y: -(mcu_y + plate_spacing_limited)/2
   _7_tr_x: _7_br_x
-  _7_tr_y: (mcu_y + plate_spacing)/2
-  _7_tl_x: -(mcu_x - plate_spacing)/2 - mcu_spacing
+  _7_tr_y: (mcu_y + plate_spacing_limited)/2
+  _7_tl_x: -(mcu_x - plate_spacing_limited)/2 - mcu_spacing
   _7_tl_y: _7_tr_y
 
-  _8_br_x: (keycap_x + spacing)/2
-  _8_br_y: -(keycap_y + plate_spacing)/2 - 2stagger_step
+  _8_br_x: (keycap_x + spacing_limited)/2
+  _8_br_y: -(keycap_y + plate_spacing_limited)/2 - 2stagger_step
 
-  _9_bl_x: -(keycap_x + plate_spacing)/2
-  _9_bl_y: -(keycap_y + plate_spacing)/2
+  _9_bl_x: -(keycap_x + plate_spacing_limited)/2
+  _9_bl_y: -(keycap_y + plate_spacing_limited)/2
 
-  _10_tl_x: -(keycap_x + plate_spacing)/2
-  _10_tl_y: (keycap_y + plate_spacing)/2
+  _10_tl_x: -(keycap_x + plate_spacing_limited)/2
+  _10_tl_y: (keycap_y + plate_spacing_limited)/2
 
-  _11_tr_x: (keycap_x - plate_spacing)/2 + spacing
-  _11_tr_y: (keycap_y + plate_spacing)/2
+  _11_tr_x: (keycap_x - plate_spacing_limited)/2 + spacing_limited
+  _11_tr_y: (keycap_y + plate_spacing_limited)/2
 
-  _12_tl_x: -(keycap_x + plate_spacing)/2
-  _12_tl_y: (keycap_y + plate_spacing)/2
-  _12_tr_x: (keycap_x - plate_spacing)/2 + spacing
-  _12_tr_y: (keycap_y + plate_spacing)/2
+  _12_tl_x: -(keycap_x + plate_spacing_limited)/2
+  _12_tl_y: (keycap_y + plate_spacing_limited)/2
+  _12_tr_x: (keycap_x - plate_spacing_limited)/2 + spacing_limited
+  _12_tr_y: (keycap_y + plate_spacing_limited)/2
 
-  _13_tl_x: -(keycap_x + plate_spacing)/2
-  _13_tl_y: (keycap_y + plate_spacing)/2
-  _13_tr_x: (keycap_x + plate_spacing)/2
-  _13_tr_y: (keycap_y + plate_spacing)/2
+  _13_tl_x: -(keycap_x + plate_spacing_limited)/2
+  _13_tl_y: (keycap_y + plate_spacing_limited)/2
+  _13_tr_x: (keycap_x + plate_spacing_limited)/2
+  _13_tr_y: (keycap_y + plate_spacing_limited)/2
 
-  _14_tl_x: -keycap_x/2 - spacing + plate_spacing/2
-  _14_tl_y: (keycap_y + plate_spacing)/2
-  _14_tr_x: (keycap_x + plate_spacing)/2
-  _14_tr_y: (keycap_y + plate_spacing)/2
+  _14_tl_x: -keycap_x/2 - spacing_limited + plate_spacing_limited/2
+  _14_tl_y: (keycap_y + plate_spacing_limited)/2
+  _14_tr_x: (keycap_x + plate_spacing_limited)/2
+  _14_tr_y: (keycap_y + plate_spacing_limited)/2
 
   # relative to main ref center (1) corners
   _1_1_br_x: _1_center_x + _1_br_x
@@ -364,14 +364,14 @@ points:
         outer:
         middle:
           key:
-            splay: -thumb_keys_splay
-            origin: [-(keycap_x + spacing)/2, -(keycap_y + spacing)/2]
+            splay: -thumb_keys_splay_limited
+            origin: [-(keycap_x + spacing_limited)/2, -(keycap_y + spacing_limited)/2]
         inner:
           key:
-            splay: -thumb_keys_splay
-            origin: [-(keycap_x + spacing)/2, -(keycap_y + spacing)/2]
-            rotate: is_thumbs_inner_1_5 * 90
-            shift: [is_thumbs_inner_1_5 * (-keycap_x + keycap_1_5_y)/2, is_thumbs_inner_1_5 * (-keycap_y + keycap_1_5_x)/2]
+            splay: -thumb_keys_splay_limited
+            origin: [-(keycap_x + spacing_limited)/2, -(keycap_y + spacing_limited)/2]
+            rotate: is_thumbs_inner_1_5_calculated * 90
+            shift: [is_thumbs_inner_1_5_calculated * (-keycap_x + keycap_1_5_y)/2, is_thumbs_inner_1_5_calculated * (-keycap_y + keycap_1_5_x)/2]
       rows:
         cluster:
 
@@ -383,7 +383,7 @@ outlines:
     - what: rectangle
       where:
         ref: thumbs_inner_cluster
-      size: [is_thumbs_inner_1_5 * keycap_1_5_x + (1 - is_thumbs_inner_1_5) * keycap_x, is_thumbs_inner_1_5 * keycap_1_5_y + (1 - is_thumbs_inner_1_5) * keycap_y]
+      size: [is_thumbs_inner_1_5_calculated * keycap_1_5_x + (1 - is_thumbs_inner_1_5_calculated) * keycap_x, is_thumbs_inner_1_5_calculated * keycap_1_5_y + (1 - is_thumbs_inner_1_5_calculated) * keycap_y]
 
   switches:
     - what: rectangle
@@ -712,23 +712,6 @@ outlines:
       name: ref_intersections
       operation: stack
 
-  mcu_plate:
-    # mcu plate
-    - what: polygon
-      points:
-        - ref: matrix_pinky_bottom
-          shift: [_1_7_tl_x, _1_7_tl_y]
-        - ref: matrix_pinky_bottom
-          shift: [_1_7_tr_x, _1_7_tr_y]
-        - ref: matrix_pinky_bottom
-          shift: [_5br_5tr__7tr_7br_intersection_x, _5br_5tr__7tr_7br_intersection_y]
-        - ref: matrix_pinky_bottom
-          shift: [_1_5_tr_x, _1_5_tr_y]
-        - ref: matrix_pinky_bottom
-          shift: [_2br_7tl__5tl_5tr_intersection_x, _2br_7tl__5tl_5tr_intersection_y]
-        - ref: matrix_pinky_bottom
-          shift: [_7bl_mcu_plate_x, _7bl_mcu_plate_y]
-
   matrix_plate:
     - what: polygon
       points:
@@ -766,6 +749,23 @@ outlines:
           shift: [_1_3_tl_x, _1_3_tl_y]
         - ref: matrix_pinky_bottom
           shift: [_1_8_br_x, _1_8_br_y]
+
+  mcu_plate:
+    # mcu plate
+    - what: polygon
+      points:
+        - ref: matrix_pinky_bottom
+          shift: [_1_7_tl_x, _1_7_tl_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_7_tr_x, _1_7_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_5br_5tr__7tr_7br_intersection_x, _5br_5tr__7tr_7br_intersection_y]
+        - ref: matrix_pinky_bottom
+          shift: [_1_5_tr_x, _1_5_tr_y]
+        - ref: matrix_pinky_bottom
+          shift: [_2br_7tl__5tl_5tr_intersection_x, _2br_7tl__5tl_5tr_intersection_y]
+        - ref: matrix_pinky_bottom
+          shift: [_7bl_mcu_plate_x, _7bl_mcu_plate_y]
 
   thumbs_plate:
     - what: polygon
