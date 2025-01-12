@@ -303,17 +303,29 @@ units:
 
   _s2_t_x: _1_2_br_x
   _s2_t_y: _2_center_y
+  _s2_default_lower_x: _1_5_tl_x
+  _s2_default_lower_y: _1_5_tl_y
+  _s2_default_upper_x: _1_2_br_x
+  _s2_default_upper_y: _2_center_y
 
   ## intersections
   _2br_7tl__5tl_5tr__no_s2_intersection_x: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_x - _1_5_tr_x) - (_1_7_tl_x - _1_2_br_x) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
   _2br_7tl__5tl_5tr__no_s2_intersection_y: ((_1_7_tl_x * _1_2_br_y - _1_7_tl_y * _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x * _1_5_tr_y - _1_5_tl_y * _1_5_tr_x)) / ((_1_7_tl_x - _1_2_br_x) * (_1_5_tl_y - _1_5_tr_y) - (_1_7_tl_y - _1_2_br_y) * (_1_5_tl_x - _1_5_tr_x))
 
-  _2br_7tl__5tl_5tr_intersection_x: _2br_7tl__5tl_5tr__no_s2_intersection_x * (_s2_t_x == _2br_7tl__5tl_5tr__no_s2_intersection_x) + _s2_t_x * (1 - (_s2_t_x == _2br_7tl__5tl_5tr__no_s2_intersection_x))
-  _2br_7tl__5tl_5tr_intersection_y: _2br_7tl__5tl_5tr__no_s2_intersection_y * (_s2_t_y >= _2br_7tl__5tl_5tr__no_s2_intersection_y) + _s2_t_y * (1 - (_s2_t_y >= _2br_7tl__5tl_5tr__no_s2_intersection_y))
+  _2br_7tl__5tl_5tr_intersection_upper_x: _2br_7tl__5tl_5tr__no_s2_intersection_x * (_s2_t_x == _2br_7tl__5tl_5tr__no_s2_intersection_x) + _s2_t_x * (1 - (_s2_t_x == _2br_7tl__5tl_5tr__no_s2_intersection_x))
+  _2br_7tl__5tl_5tr_intersection_upper_y: _2br_7tl__5tl_5tr__no_s2_intersection_y * (_s2_t_y >= _2br_7tl__5tl_5tr__no_s2_intersection_y) + _s2_t_y * (1 - (_s2_t_y >= _2br_7tl__5tl_5tr__no_s2_intersection_y))
 
+  _2br_7tl__5tl_5tr_intersection_x: _s2_default_lower_x * (_1_5_tl_y <= _1_2_br_y) + _2br_7tl__5tl_5tr_intersection_upper_x * (1 - (_1_5_tl_y <= _1_2_br_y))
+  _2br_7tl__5tl_5tr_intersection_y: _s2_default_lower_y * (_1_5_tl_y <= _1_2_br_y) + _2br_7tl__5tl_5tr_intersection_upper_y * (1 - (_1_5_tl_y <= _1_2_br_y))
+
+  _7bl_mcu_plate_x: _1_2_br_x * (_1_5_tl_y <= _1_2_br_y) + _2br_7tl__5tl_5tr_intersection_x * (1 - (_1_5_tl_y <= _1_2_br_y))
+  _7bl_mcu_plate_y: _1_2_br_y * (_1_5_tl_y <= _1_2_br_y) + _2br_7tl__5tl_5tr_intersection_y * (1 - (_1_5_tl_y <= _1_2_br_y))
+
+  ###
   _3bl_4br__5bl_5br_intersection_x: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_x - _1_5_br_x) - (_1_3_bl_x - _1_4_br_x) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
   _3bl_4br__5bl_5br_intersection_y: ((_1_3_bl_x * _1_4_br_y - _1_3_bl_y * _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x * _1_5_br_y - _1_5_bl_y * _1_5_br_x)) / ((_1_3_bl_x - _1_4_br_x) * (_1_5_bl_y - _1_5_br_y) - (_1_3_bl_y - _1_4_br_y) * (_1_5_bl_x - _1_5_br_x))
 
+  ###
   _5br_5tr__7tr_7br__no_s1_intersection_x: ((_1_5_br_x - _1_5_tr_x) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
   _5br_5tr__7tr_7br__no_s1_intersection_y: ((_1_5_br_y - _1_5_tr_y) * (_1_7_tr_x * _1_7_br_y - _1_7_br_x * _1_7_tr_y) - (_1_7_br_y - _1_7_tr_y) * (_1_5_tr_x * _1_5_br_y - _1_5_br_x * _1_5_tr_y)) / ((_1_5_br_x - _1_5_tr_x) * (_1_7_br_y - _1_7_tr_y) - (_1_7_br_x - _1_7_tr_x) * (_1_5_br_y - _1_5_tr_y))
 
@@ -713,9 +725,9 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_1_5_tr_x, _1_5_tr_y]
         - ref: matrix_pinky_bottom
-          shift: [_1_5_tl_x, _1_5_tl_y]
-        - ref: matrix_pinky_bottom
           shift: [_2br_7tl__5tl_5tr_intersection_x, _2br_7tl__5tl_5tr_intersection_y]
+        - ref: matrix_pinky_bottom
+          shift: [_7bl_mcu_plate_x, _7bl_mcu_plate_y]
 
   matrix_plate:
     - what: polygon
@@ -767,7 +779,7 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [_1_5_tr_x, _1_5_tr_y]
         - ref: matrix_pinky_bottom
-          shift: [_1_5_tl_x, _1_5_tl_y]
+          shift: [_2br_7tl__5tl_5tr_intersection_x, _2br_7tl__5tl_5tr_intersection_y]
         - ref: matrix_pinky_bottom
           shift: [_1_2_br_x, _1_2_br_y]
         - ref: matrix_pinky_bottom
@@ -781,8 +793,8 @@ outlines:
 
   plate:
     # mcu plate
-    # - what: outline
-    #   name: mcu_plate
+    - what: outline
+      name: mcu_plate
     # matrix plate
     - what: outline
       name: matrix_plate
